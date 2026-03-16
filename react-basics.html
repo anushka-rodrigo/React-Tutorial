@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="react-basics.js">
+    </script> <!--this is not needed for the code-->
+
+    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"></script> <!--this is not needed for the code-->
+    
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel"> //Translates to normal js
+      const button = <button>Hey yo</button>; //JSX
+      const paragraph = <p>I have been to the desert with a horse with no name!</p>;
+
+      const div = (
+          <div>
+            <button>Hey yo</button>
+            <p>I have been to the desert with a horse with no name! {2 + 2}</p>
+          </div>
+        );
+
+      //can include JS code directly to JSX, {2 + 2} thing
+
+      const container = document.querySelector('.js-container'); //get an html element and put it in js (DOM)
+      ReactDOM.createRoot(container).render(div); 
+      //react uses a container, everything in the html element we brought will now be controlled by react
+    </script>
+  </body>
+</html>
