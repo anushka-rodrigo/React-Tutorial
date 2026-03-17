@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel"> 
+      //component name must start with a capital letter
+      function ChatInput() { 
+        return (
+          <>
+            <input 
+              placeholder="Send a message to Chatbot" 
+              size="30" 
+            />
+            <button>Send</button>
+          </>
+          );
+      }
+      //JSX is strict, all elements need a closing tag, we can use a self closing element
+      //<input /> == <input></input>
+      //<> is a fragment, used to group elements without inserting an aditional div
+
+      function ChatMessage({ message, sender }) { //instead of props we can directly take out the message and sender
+        //console.log(props);
+        //const message = props.message;
+        //const sender = props.sender;
+        //const { message, sender } = props; for this parameter should be props
+        //shortcut for const message = props.message; and const sender = props.sender;
+
+        /*
+        if (sender === 'robot') {
+          return (
+            <div>
+              <img src="imgs/robot.png" width="50"/>
+              {message}
+            </div>
+          );
+        }
+         */
+
+        return (
+          <div>
+            {sender === 'robot' && (
+              <img src="imgs/robot.png" width="50"/>
+            )}
+            {message}
+            {sender === 'user' && (
+              <img src="imgs/user.png" width="50"/>
+            )}
+          </div>
+        );
+      }
+      //div is a block element, it will take up an entire line in the pg
+      //props contain all attributes that are coming from the element
+      //props = properties
+      //props make our components reusable
+      //&& is a guard operator, using it for a shortcut if statement
+
+
+      //use a component to create the app without just using a variable as before
+      function App() {
+        return (
+          <>
+            <ChatInput />
+            <ChatMessage 
+              message="hello chatbot" 
+              sender="user" 
+            />
+            <ChatMessage 
+              message="Hello! How can I help you?" 
+              sender="robot" 
+            />
+            <ChatMessage 
+              message="can you get me todays date?" 
+              sender="user" 
+            />
+            <ChatMessage 
+              message="Today is March 17" 
+              sender="robot" 
+            />
+          </>
+        );
+      }
+      //{ChatInput()} == <ChatInput /> (we create our own html element, this is a main idea of react)
+          
+      const container = document.querySelector('.js-container'); 
+      ReactDOM.createRoot(container).render(<App />); 
+    </script>
+  </body>
+</html>
